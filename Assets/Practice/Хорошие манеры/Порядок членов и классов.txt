@@ -1,0 +1,87 @@
+Порядок членов и классов в C# (Рекомендованный стиль кода)
+При написании кода в C# важно соблюдать логичный порядок размещения классов, свойств, методов и полей. Это делает код читабельным и поддерживаемым.
+
+Общий порядок членов в классе
+Константы (const) и статические поля (static readonly)
+Поля (private, protected, public)
+Свойства (get / set)
+Конструкторы и деструкторы
+Методы (public, protected, private)
+События (event)
+Операторы (operator overloads)
+Индексаторы (this[])
+Вспомогательные (private) методы
+📌 1. Порядок классов в файле
+✅ В одном файле сначала основной класс, затем вложенные классы (если нужны).
+
+public class MainClass
+{
+    private class NestedClass // Вложенный класс после основного
+    {
+    }
+}
+📌 2. Порядок членов в классе (пример)
+
+public class Player
+{
+    // 1. Константы и статические поля
+    public const int MaxLevel = 100;
+    private static readonly string gameName = "Space Invaders";
+
+    // 2. Поля
+    private string _name;
+    protected int _health;
+    public int Score;
+
+    // 3. Свойства
+    public string Name 
+    { 
+        get => _name; 
+        set => _name = value; 
+    }
+
+    public int Health 
+    { 
+        get => _health; 
+        private set => _health = value; 
+    }
+
+    // 4. Конструкторы
+    public Player(string name)
+    {
+        _name = name;
+        _health = 100;
+    }
+
+    // 5. Методы (public → protected → private)
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+        if (_health <= 0) Die();
+    }
+
+    protected void RegenerateHealth()
+    {
+        _health += 10;
+    }
+
+    private void Die()
+    {
+        Console.WriteLine($"{_name} погиб!");
+    }
+
+    // 6. События
+    public event Action PlayerDied;
+
+    // 7. Операторы
+    public static Player operator +(Player a, Player b)
+    {
+        return new Player(a._name + "&" + b._name);
+    }
+
+    // 8. Индексаторы
+    public string this[int index]
+    {
+        get => _name[index].ToString();
+    }
+}
