@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # или windows-latest в зависимости от вашего окружения
+    runs-on: windows-latest
 
     steps:
     - name: Check out repository
@@ -20,15 +20,15 @@ jobs:
       uses: game-ci/unity-action@v2
       with:
         unityVersion: 2021.3.18f1  # Укажите вашу версию Unity
-        activateLicense: false  # (если лицензия уже активирована)
+        activateLicense: false  # (необязательно) Для активации лицензии
 
     - name: Prepare build script
       run: |
-        chmod +x ./build/build.sh  # Даем права на выполнение скрипту
+        chmod +x ./build/build.bat  # Даем права на выполнение скрипту
 
     - name: Build the project
       run: |
-        ./build/build.sh  # Запускаем скрипт
+        ./build/build.bat  # Запуск bat скрипта для сборки проекта на Windows
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
