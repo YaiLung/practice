@@ -28,7 +28,7 @@ jobs:
         ./build.sh  # или ваша команда сборки, например через Unity CLI
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: unity-build
         path: ./Builds
