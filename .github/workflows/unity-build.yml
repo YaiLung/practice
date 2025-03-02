@@ -3,35 +3,23 @@ name: Unity Build
 on:
   push:
     branches:
-      - main  
+      - main
   pull_request:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Check out repository
       uses: actions/checkout@v2
 
-    - name: Set up Unity
-      uses: game-ci/unity-action@v3
-      with:
-        unityVersion: 2021.3.18f1  # Укажите вашу версию Unity
-        activateLicense: false  # (необязательно) Для активации лицензии
-
-    - name: Prepare build script
+    - name: Set up Unity using Docker
       run: |
-        chmod +x ./build/build.bat  # Даем права на выполнение скрипту
+        docker run --rm \
+        -v ${{ github.workspace }}:/project \
+        unityci/editor:2021.3.18f1 \
+        /bin/bash -c "cd /project && /opt/Unity/Editor/Unity -batchmode -nographics -quit -projectPath /project -buildTarget StandaloneWindows64 -executeMethod BuildScript.PerformBuild"
 
-    - name: Build the project
-      run: |
-        ./build/build.bat  # Запуск bat скрипта для сборки проекта на Windows
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: unity-build
-        path: ./Builds
