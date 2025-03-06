@@ -25,9 +25,9 @@ jobs:
           Library-${{ runner.os }}-
 
     - name: Activate Unity License
-      run: echo "${{ secrets.UNITY_LICENSE }}" > Unity_lic.ulf
+      run: echo "${{ secrets.UNITY_LICENSE }}" | base64 --decode > Unity_lic.ulf
 
-    - name: Reset uncommitted changes  # Добавляем этот шаг
+    - name: Reset uncommitted changes
       run: git reset --hard
 
     - name: Build the Unity project
@@ -35,9 +35,11 @@ jobs:
       with:
         unityVersion: 2021.3.18f1
         targetPlatform: StandaloneWindows64
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: unity-build
-        path: Build/
+        path: build/StandaloneWindows64/
