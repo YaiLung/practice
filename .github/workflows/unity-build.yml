@@ -24,6 +24,9 @@ jobs:
         restore-keys: |
           Library-${{ runner.os }}-
 
+    - name: Activate Unity License
+      run: echo "${{ secrets.UNITY_LICENSE }}" > Unity_lic.ulf
+
     - name: Build the Unity project
       uses: game-ci/unity-builder@v4
       with:
@@ -34,6 +37,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: unity-build
-        path: build
+        path: Build/
 
 
