@@ -30,8 +30,4 @@ jobs:
           projectPath: path/to/your/project  # Путь к проекту в репозитории
           githubToken: ${{ secrets.GITHUB_TOKEN }}  # Используем GitHub токен для CI/CD
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v3  # Загружаем результаты тестов
-        with:
-          name: TestResults
-          path: path/to/test-results  # Путь к результатам тестирования
+   
