@@ -1,0 +1,32 @@
+name: Unity Build
+
+on:
+  push:
+    branches:
+      - main  # Запуск при пуше в main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Unity
+        uses: game-ci/unity-setup@v2
+        with:
+          unityVersion: 2021.3.18f1
+          activateLicense: true
+          unityLicenseFile: ${{ secrets.UNITY_LICENSE }}
+
+      - name: Build Unity Project
+        uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: StandaloneWindows64  # Можно поменять на WebGL, Android и т.д.
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build
+          path: build/StandaloneWindows64
