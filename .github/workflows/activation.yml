@@ -1,31 +1,12 @@
-name: Acquire activation file
-on:
-    workflow_dispatch: {}
+name: Test Custom Action
+on: [push]
 
 jobs:
-    activation:
-        name: Request manual activation file 🔑
-        runs-on: ubuntu-latest
-        steps:
-            # Устанавливаем Unity Editor
-            - name: Install Unity Editor
-              uses: game-ci/unity-setup@v2
-              with:
-                  unityVersion: 2022.3.10f1  # Укажи свою версию Unity
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            # Генерируем файл активации
-            - name: Generate activation file
-              run: |
-                  unity-editor \
-                    -batchmode \
-                    -nographics \
-                    -logFile /dev/stdout \
-                    -createManualActivationFile \
-                    -quit
-
-            # Загружаем файл активации
-            - name: Upload activation file
-              uses: actions/upload-artifact@v4
-              with:
-                  name: Unity_Activation_File
-                  path: Unity_v*.alf
+      - name: Запуск нашего экшена
+        uses: ./.github/actions/hello-world
