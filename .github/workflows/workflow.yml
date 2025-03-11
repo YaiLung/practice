@@ -2,6 +2,12 @@ name: Build and Test Project
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+  actions: read
+  checks: write  # Для публикации результатов тестов
+  pull-requests: write  # Если тесты связаны с PR
+
 jobs:
     test:
         name: Run Tests
@@ -18,7 +24,7 @@ jobs:
                   UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
               with:
                   projectPath: .
-                  githubToken: ${{ secrets.GITHUB_TOKEN }}
+                  githubToken: ${{ secrets.GITHUB_TOKEN }}  # Добавлен токен
 
     build:
         needs: test  # Сборка начнется только если тесты успешны
@@ -44,6 +50,7 @@ jobs:
                   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
               with:
                   targetPlatform: ${{ matrix.targetPlatform }}
+                  githubToken: ${{ secrets.GITHUB_TOKEN }}  # Добавлен токен
             - uses: actions/upload-artifact@v4
               with:
                   name: Build-${{ matrix.targetPlatform }}
