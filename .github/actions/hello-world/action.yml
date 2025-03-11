@@ -1,7 +1,0 @@
-name: "Hello World Action"
-description: "Выводит приветствие"
-runs:
-  using: "composite"
-  steps:
-    - run: echo "Привет, мир!"
-      shell: bash
