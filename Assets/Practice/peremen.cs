@@ -8,7 +8,7 @@ using UnityEngine;
 public class peremen : MonoBehaviour
 
 {
-
+    
     int score = 10;
     float speed = 5.5f;
     string playerName = "Oleg";
@@ -17,8 +17,8 @@ public class peremen : MonoBehaviour
     {
 
     }
+    
 
-    // Update is called once per frame
     void Update()
     {
 
