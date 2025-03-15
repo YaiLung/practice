@@ -6,7 +6,7 @@ using UnityEngine;
 /// переменыйе 
 /// </summary>
 public class peremen : MonoBehaviour
-
+    
 {
     
     int score = 10;
