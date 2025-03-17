@@ -1,0 +1,66 @@
+1. Что такое переменные в C#?
+Переменные — это именованные области памяти, в которых хранятся данные. В C# переменная должна иметь тип данных, который определяет, какие значения она может хранить.
+
+2. Типы переменных в C#
+Все переменные делятся на значимые (value types) и ссылочные (reference types).
+
+Значимые типы (хранятся в стеке, передаются по значению):
+
+int, float, double, bool, char
+struct
+enum
+Ссылочные типы (хранятся в куче, передаются по ссылке):
+
+string
+class
+object
+array
+Пример объявления переменных:
+
+csharp
+Копировать
+Редактировать
+int score = 10;
+float speed = 5.5f;
+string playerName = "Oleg";
+bool isAlive = true;
+3. Переменные в Unity
+В Unity переменные можно использовать в компонентах (MonoBehaviour).
+
+Области видимости переменных
+public – переменная доступна извне и видна в Inspector.
+private – переменная доступна только внутри класса.
+[SerializeField] – переменная приватная, но видна в Inspector.
+static – принадлежит классу, а не объекту.
+const – неизменяемая переменная (только для значений, известных во время компиляции).
+
+Глобальные переменные (Static)
+Если переменная объявлена как static, она доступна без создания экземпляра класса:
+
+csharp
+Копировать
+Редактировать
+public class GameManager
+{
+    public static int score = 0;
+}
+Доступ к score:
+
+csharp
+Копировать
+Редактировать
+GameManager.score += 10;
+
+Переменные и ScriptableObject
+Если нужно хранить глобальные данные, можно использовать ScriptableObject:
+
+csharp
+Копировать
+Редактировать
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "GameData", menuName = "ScriptableObjects/GameData")]
+public class GameData : ScriptableObject
+{
+    public int maxHealth = 100;
+}
