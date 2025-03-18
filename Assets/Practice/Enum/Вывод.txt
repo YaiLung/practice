@@ -1,0 +1,8 @@
+Вывод
+Функция	Применение
+enum	Определяет список именованных значений
+(int)EnumValue	Преобразует enum в int
+(EnumType)intValue	Преобразует int в enum
+Enum.IsDefined	Проверяет, есть ли значение в enum
+Enum.GetValues	Получает все значения enum
+Flags	Позволяет комбинировать значения enum
