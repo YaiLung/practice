@@ -1,0 +1,15 @@
+Стек (Stack<T>)
+Работает по принципу "последний зашел – первый вышел" (LIFO).
+
+✅ Пример:
+
+csharp
+Копировать
+Редактировать
+Stack<string> stack = new Stack<string>();
+
+stack.Push("Карта 1");
+stack.Push("Карта 2");
+stack.Push("Карта 3");
+
+Debug.Log(stack.Pop()); // "Карта 3" (удаляется последним)
