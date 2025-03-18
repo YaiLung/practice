@@ -1,0 +1,58 @@
+Перечисления (enum) в C#
+enum (перечисление) — это специальный тип данных, который используется для хранения именованных констант.
+
+ Создание enum
+✅ Пример:
+
+public enum WeaponType
+{
+    Sword,  // 0
+    Bow,    // 1
+    Axe     // 2
+}
+
+По умолчанию каждому элементу присваивается число, начиная с 0.
+
+WeaponType playerWeapon = WeaponType.Bow;
+Debug.Log(playerWeapon); // Выведет: Bow
+
+Явное присвоение значений
+Можно задать свои числовые значения:
+
+public enum Difficulty
+{
+    Easy = 1,
+    Normal = 2,
+    Hard = 3
+}
+
+Преобразование enum ⇄ int
+🔹 Из enum в int:
+
+int weaponID = (int)WeaponType.Axe; // 2
+🔹 Из int в enum:
+
+WeaponType weapon = (WeaponType)1;
+Debug.Log(weapon); // Bow
+
+Использование Flags (битовые операции)
+Если нужно комбинировать значения enum, можно использовать флаг Flags.
+
+[System.Flags]
+public enum PlayerState
+{
+    Idle = 1,      // 0001
+    Running = 2,   // 0010
+    Jumping = 4,   // 0100
+    Attacking = 8  // 1000
+}
+🔹 Комбинация состояний:
+
+PlayerState state = PlayerState.Running | PlayerState.Jumping;
+Debug.Log(state); // Running, Jumping
+🔹 Проверка состояния:
+
+if ((state & PlayerState.Jumping) == PlayerState.Jumping)
+{
+    Debug.Log("Игрок прыгает!");
+}

@@ -1,0 +1,11 @@
+Вывод
+Тип метода	Описание
+Обычный метод	void SayHello() {}
+С параметрами	void Greet(string name) {}
+С возвращаемым значением	int Sum(int a, int b) { return a + b; }
+Перегрузка (overloading)	Методы с одинаковым именем, но разными параметрами
+static метод	Можно вызывать без создания объекта
+Рекурсивный метод	Метод вызывает сам себя
+ref и out	Позволяют изменять переданные аргументы
+По умолчанию (default parameters)	void Print(string msg = "Hello") {}
+Лямбда (=>)	Func<int, int, int> sum = (a, b) => a + b;

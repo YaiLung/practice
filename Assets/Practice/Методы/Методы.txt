@@ -1,0 +1,59 @@
+Методы в C#
+Методы — это блоки кода, которые можно вызывать многократно. Они позволяют структурировать код и избегать дублирования.
+
+Метод с параметрами
+
+void Greet(string name)
+{
+    Debug.Log("Привет, " + name + "!");
+}
+
+Greet("Олег"); // Выведет: "Привет, Олег!"
+
+Метод с возвращаемым значением
+
+int Sum(int a, int b)
+{
+    return a + b;
+}
+
+int result = Sum(5, 7); // result = 12
+
+Перегрузка методов (Method Overloading)
+Позволяет создавать методы с одинаковым именем, но разными параметрами.
+
+void Print(int number)
+{
+    Debug.Log("Число: " + number);
+}
+
+void Print(string text)
+{
+    Debug.Log("Текст: " + text);
+}
+
+Print(10);      // "Число: 10"
+Print("Hello"); // "Текст: Hello"
+
+static методы
+Методы, которые не требуют создания объекта класса.
+
+public static int Multiply(int x, int y)
+{
+    return x * y;
+}
+
+int result = Multiply(3, 4); // 12
+
+Рекурсивные методы
+Методы, которые вызывают сами себя.
+
+✅ Пример (Факториал):
+
+int Factorial(int n)
+{
+    if (n == 1) return 1;
+    return n * Factorial(n - 1);
+}
+
+Debug.Log(Factorial(5)); // 120
