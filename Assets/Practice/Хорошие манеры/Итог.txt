@@ -1,0 +1,6 @@
+Итоговый порядок кода в C#:
+Тип	Порядок
+Файл	using → namespace → class
+Класс	const → static → fields → properties → constructors → methods → events → operators → indexers
+Методы	public → protected → private
+Unity	fields → Awake/Start/Update → game logic → input → events
